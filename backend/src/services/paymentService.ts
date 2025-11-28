@@ -29,8 +29,14 @@ export class PaymentService {
 
     // 生成支付URL
     const paymentUrl = alipaySdk.pageExec('alipay.trade.page.pay', {
-      formData,
-    }) as string;
+       bizContent: {
+     out_trade_no: params.orderId,
+      total_amount: params.totalAmount,
+      subject: params.subject,
+      body: params.body,
+      product_code: 'FAST_INSTANT_TRADE_PAY',
+    },
+    }) ;
 
     // 记录交易记录
     transactionLogger.createPaymentRecord(
@@ -49,23 +55,17 @@ export class PaymentService {
    * 创建支付宝手机网站支付
    */
   createAlipayWapPayment(params: CreatePaymentParams): string {
-    // 创建表单数据
-    const formData = new AlipayFormData();
-    formData.setMethod('GET');
-    formData.addField('returnUrl', process.env.ALIPAY_RETURN_URL || '');
-    formData.addField('notifyUrl', process.env.ALIPAY_NOTIFY_URL || '');
-    formData.addField('bizContent', {
+   
+
+    const paymentUrl =  alipaySdk.pageExec("alipay.trade.wap.pay", {
+    bizContent: {
       out_trade_no: params.orderId,
       total_amount: params.totalAmount,
       subject: params.subject,
       body: params.body,
-      product_code: 'QUICK_WAP_WAY',
-    });
-
-    // 生成支付URL
-    const paymentUrl = alipaySdk.pageExec('alipay.trade.wap.pay', {
-      formData,
-    }) as string;
+      product_code: 'QUICK_WAP_WAY'
+    },
+  });
 
     // 记录交易记录
     transactionLogger.createPaymentRecord(

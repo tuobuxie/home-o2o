@@ -216,6 +216,12 @@ export const Booking: React.FC = () => {
         paymentDiv.style.display = 'none';
         paymentDiv.innerHTML = result.paymentUrl;
         document.body.appendChild(paymentDiv);
+
+        // 自动提交表单（支付宝返回的script已经包含提交逻辑，这里做双重保障）
+        const form1 = paymentDiv.querySelector('form');
+        if (form1) {
+          form1.submit();
+        }
         
         // 支付宝的HTML中包含自动提交脚本，会自动执行跳转到支付页面
       } else {

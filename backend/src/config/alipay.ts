@@ -5,9 +5,9 @@ dotenv.config();
 
 // 添加日志记录用于排查环境变量配置
 console.log('=== Alipay Config Debug Info ===');
-console.log('ALIPAY_APP_ID:', process.env.ALIPAY_APP_ID ? `${process.env.ALIPAY_APP_ID.substring(0, 10)}...` : 'NOT SET');
-console.log('ALIPAY_PRIVATE_KEY exists:', !!process.env.ALIPAY_PRIVATE_KEY);
-console.log('ALIPAY_PUBLIC_KEY exists:', !!process.env.ALIPAY_PUBLIC_KEY);
+console.log('ALIPAY_APP_ID:', process.env.ALIPAY_APP_ID );
+console.log('ALIPAY_PRIVATE_KEY:', process.env.ALIPAY_PRIVATE_KEY);
+console.log('ALIPAY_PUBLIC_KEY:', process.env.ALIPAY_PUBLIC_KEY);
 console.log('ALIPAY_GATEWAY:', process.env.ALIPAY_GATEWAY || 'default');
 console.log('===============================');
 
