@@ -1,4 +1,4 @@
-import fs from 'fs';
+opensslimport fs from 'fs';
 import path from 'path';
 
 // 交易记录类型
