@@ -11,11 +11,18 @@ echo "\n1. 检查Node.js环境..."
 if ! command -v node &> /dev/null
 then
     echo "❌ 错误：未安装Node.js，请先安装Node.js 18+"
+    echo "💡 注意：Linux服务器默认的Node.js可能使用较老的OpenSSL 1.1版本，这会导致支付宝SDK出现兼容性问题"
+    echo "💡 解决方案：请使用以下命令安装支持OpenSSL 3.x的Node.js版本："
+    echo "   curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -"
+    echo "   sudo yum install -y nodejs"
+    echo "   node -p process.versions.openssl  # 确保输出的是3.x版本"
     exit 1
 fi
 
 echo "✅ Node.js版本：$(node -v)"
 echo "✅ npm版本：$(npm -v)"
+echo "💡 注意：请确保Node.js使用的OpenSSL版本为3.x，否则支付宝SDK可能出现兼容性问题"
+echo "💡 检查OpenSSL版本命令：node -p process.versions.openssl"
 
 # 2. 安装依赖
 echo "\n2. 安装项目依赖..."

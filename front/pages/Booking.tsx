@@ -211,8 +211,13 @@ export const Booking: React.FC = () => {
       });
       
       if (result.success && result.paymentUrl) {
-        // 跳转到支付宝支付页面
-        window.location.href = result.paymentUrl;
+        // 创建一个隐藏的div来渲染支付宝返回的HTML表单
+        const paymentDiv = document.createElement('div');
+        paymentDiv.style.display = 'none';
+        paymentDiv.innerHTML = result.paymentUrl;
+        document.body.appendChild(paymentDiv);
+        
+        // 支付宝的HTML中包含自动提交脚本，会自动执行跳转到支付页面
       } else {
         alert(result.error || '创建支付失败，请稍后重试');
       }
