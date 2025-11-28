@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, MapPin, Clock, Calendar, ShieldCheck, Loader2, ScanLine } from 'lucide-react';
 import { getServiceById, simulateApiCall } from '../services/mockData';
+import { createAlipayPayment, createAlipayWapPayment } from '../services/apiService';
 import { ServiceItem, BookingFormState } from '../types';
 import { Button } from '../components/Button';
 import { useAuth } from '../contexts/AuthContext';
@@ -180,6 +181,11 @@ export const Booking: React.FC = () => {
     }));
   };
 
+  // 检测是否为移动设备
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
+
   const handleSubmit = async () => {
     if (!form.contactName || !form.phone || !form.address) {
       alert('请填写完整联系信息');
@@ -187,10 +193,35 @@ export const Booking: React.FC = () => {
     }
 
     setIsSubmitting(true);
-    await simulateApiCall(600);
-    setIsSubmitting(false);
     
-    setShowPayModal(true);
+    try {
+      // 创建订单ID
+      const orderId = `ORD-${Date.now()}`;
+      const totalAmount = calculateTotal();
+      
+      // 根据设备类型选择支付API
+      const paymentApi = isMobileDevice() ? createAlipayWapPayment : createAlipayPayment;
+      
+      // 调用后端API创建支付宝支付
+      const result = await paymentApi({
+        orderId,
+        totalAmount,
+        subject: service?.title || '家政服务',
+        body: `家政服务：${service?.title || '服务'} - ${form.quantity}${service?.unit || '项'}`,
+      });
+      
+      if (result.success && result.paymentUrl) {
+        // 跳转到支付宝支付页面
+        window.location.href = result.paymentUrl;
+      } else {
+        alert(result.error || '创建支付失败，请稍后重试');
+      }
+    } catch (error) {
+      console.error('支付创建失败:', error);
+      alert('创建支付失败，请稍后重试');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handlePaymentSuccess = () => {
