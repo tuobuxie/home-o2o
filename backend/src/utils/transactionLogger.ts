@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import logger from './logger';
 
 // 交易记录类型
 export enum TransactionStatus {
@@ -54,7 +55,7 @@ export class TransactionLogger {
       // 追加写入文件
       fs.appendFileSync(this.logFile, logLine, 'utf8');
     } catch (error) {
-      console.error('Error writing transaction log:', error);
+      logger.error('Error writing transaction log:', error);
     }
   }
 

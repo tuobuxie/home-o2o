@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import paymentRoutes from './routes/paymentRoutes';
+import logger from './utils/logger';
 
 // 加载环境变量
 dotenv.config();
@@ -25,5 +26,5 @@ app.get('/api/health', (req, res) => {
 
 // 启动服务器
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  logger.info(`Server is running on port ${PORT}`);
 });

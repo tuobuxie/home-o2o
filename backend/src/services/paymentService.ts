@@ -1,6 +1,7 @@
 import alipaySdk from '../config/alipay';
 import { AlipayFormData } from 'alipay-sdk';
 import transactionLogger, { TransactionType, TransactionStatus } from '../utils/transactionLogger';
+import logger from '../utils/logger';
 
 export interface CreatePaymentParams {
   orderId: string;
@@ -115,7 +116,7 @@ export class PaymentService {
           remark: `Alipay trade status: ${trade_status}`
         });
         
-        console.log(`Order ${out_trade_no} paid successfully, alipay trade no: ${trade_no}`);
+        logger.info(`Order ${out_trade_no} paid successfully, alipay trade no: ${trade_no}`);
       } else {
         // 记录其他交易状态
         transactionLogger.writeRecord({
@@ -131,12 +132,12 @@ export class PaymentService {
           remark: `Alipay trade status: ${trade_status}`
         });
         
-        console.log(`Order ${out_trade_no} has status: ${trade_status}`);
+        logger.info(`Order ${out_trade_no} has status: ${trade_status}`);
       }
 
       return { success: true, message: 'success' };
     } catch (error) {
-      console.error('Error handling alipay notify:', error);
+      logger.error('Error handling alipay notify:', error);
       return { success: false, message: 'error' };
     }
   }
