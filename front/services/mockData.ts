@@ -79,7 +79,38 @@ export const SERVICES: ServiceItem[] = [
   }
 ];
 
-export const MOCK_ORDERS = [
+// 订单数据类型定义
+export interface Order {
+  id: string;
+  serviceTitle: string;
+  image: string;
+  price: number;
+  date: string;
+  status: string;
+}
+
+// 从localStorage获取订单数据
+const getOrdersFromStorage = (): Order[] => {
+  try {
+    const storedOrders = localStorage.getItem('mockOrders');
+    return storedOrders ? JSON.parse(storedOrders) : [];
+  } catch (error) {
+    console.error('Failed to load orders from localStorage:', error);
+    return [];
+  }
+};
+
+// 保存订单数据到localStorage
+const saveOrdersToStorage = (orders: Order[]) => {
+  try {
+    localStorage.setItem('mockOrders', JSON.stringify(orders));
+  } catch (error) {
+    console.error('Failed to save orders to localStorage:', error);
+  }
+};
+
+// 初始订单数据
+const initialOrders: Order[] = [
   {
     id: 'ORD-1715421001',
     serviceTitle: '日常保洁',
@@ -97,6 +128,45 @@ export const MOCK_ORDERS = [
     status: '待服务'
   }
 ];
+
+// 从localStorage加载订单数据，如果没有则使用初始数据
+export let MOCK_ORDERS: Order[] = getOrdersFromStorage().length > 0 ? getOrdersFromStorage() : [...initialOrders];
+
+// 添加或更新订单的函数
+export const addOrder = (order: Omit<Order, 'date'> & { date?: string }) => {
+  // 获取当前日期时间
+  const now = new Date();
+  const formattedDate = order.date || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  
+  // 创建订单对象
+  const orderToAdd: Order = {
+    id: order.id,
+    serviceTitle: order.serviceTitle,
+    image: order.image,
+    price: order.price,
+    date: formattedDate,
+    status: order.status || '待服务'
+  };
+  
+  // 检查订单号是否已存在
+  const existingOrderIndex = MOCK_ORDERS.findIndex(o => o.id === order.id);
+  
+  if (existingOrderIndex >= 0) {
+    // 如果存在，更新现有订单
+    MOCK_ORDERS[existingOrderIndex] = {
+      ...MOCK_ORDERS[existingOrderIndex],
+      ...orderToAdd
+    };
+  } else {
+    // 如果不存在，添加新订单
+    MOCK_ORDERS = [orderToAdd, ...MOCK_ORDERS];
+  }
+  
+  // 保存到localStorage
+  saveOrdersToStorage(MOCK_ORDERS);
+  
+  return MOCK_ORDERS.find(o => o.id === order.id) || orderToAdd;
+};
 
 export const getServiceById = (id: string): ServiceItem | undefined => {
   return SERVICES.find(s => s.id === id);

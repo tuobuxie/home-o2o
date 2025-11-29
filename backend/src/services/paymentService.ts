@@ -15,27 +15,18 @@ export class PaymentService {
    * 创建支付宝网页支付
    */
   createAlipayPagePayment(params: CreatePaymentParams): string {
-    // 创建表单数据
-    const formData = new AlipayFormData();
-    formData.setMethod('GET');
-    formData.addField('returnUrl', process.env.ALIPAY_RETURN_URL || '');
-    formData.addField('notifyUrl', process.env.ALIPAY_NOTIFY_URL || '');
-    formData.addField('bizContent', {
+   
+
+    // 生成支付URL
+    const paymentUrl = alipaySdk.pageExec('alipay.trade.page.pay', {
+       bizContent: {
       out_trade_no: params.orderId,
       total_amount: params.totalAmount,
       subject: params.subject,
       body: params.body,
       product_code: 'FAST_INSTANT_TRADE_PAY',
-    });
-
-    // 生成支付URL
-    const paymentUrl = alipaySdk.pageExec('alipay.trade.page.pay', {
-       bizContent: {
-     out_trade_no: params.orderId,
-      total_amount: params.totalAmount,
-      subject: params.subject,
-      body: params.body,
-      product_code: 'FAST_INSTANT_TRADE_PAY',
+      returnUrl: process.env.ALIPAY_RETURN_URL,
+      notifyUrl: process.env.ALIPAY_NOTIFY_URL,
     },
     }) ;
 
@@ -63,7 +54,9 @@ export class PaymentService {
       total_amount: params.totalAmount,
       subject: params.subject,
       body: params.body,
-      product_code: 'QUICK_WAP_WAY'
+      product_code: 'QUICK_WAP_WAY' ,
+      returnUrl: process.env.ALIPAY_RETURN_URL,
+      notifyUrl: process.env.ALIPAY_NOTIFY_URL,
     },
   });
 
