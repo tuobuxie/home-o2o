@@ -147,12 +147,7 @@ export const Booking: React.FC = () => {
     notes: ''
   });
 
-  // 安全检查：如果未登录，强制跳转
-  useEffect(() => {
-    if (!isAuthenticated) {
-        navigate('/login', { state: { from: location }, replace: true });
-    }
-  }, [isAuthenticated, navigate, location]);
+  // 去掉登录检查，允许未登录用户下单
 
   useEffect(() => {
     if (id) {
@@ -245,8 +240,7 @@ export const Booking: React.FC = () => {
     });
   };
 
-  // 如果未登录，在跳转前暂时不渲染内容或渲染Loading
-  if (!isAuthenticated) return null;
+  // 去掉登录检查，允许未登录用户下单
 
   if (!service) return <div className="p-8 text-center text-gray-500">加载中...</div>;
 

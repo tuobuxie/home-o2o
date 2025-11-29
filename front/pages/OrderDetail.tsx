@@ -24,10 +24,6 @@ export const OrderDetail: React.FC = () => {
   // 查找订单详情
   const order = MOCK_ORDERS.find(o => o.id === id);
 
-  if (!isAuthenticated) {
-    navigate('/login');
-    return null;
-  }
 
   if (!order) {
     return (
@@ -116,7 +112,7 @@ export const OrderDetail: React.FC = () => {
       </div>
 
       {/* 底部操作按钮 */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white p-4 border-t border-gray-100 space-y-3">
+      <div className="fixed bottom-16 left-0 right-0 bg-white p-4 border-t border-gray-100 space-y-3 z-30">
         <div className="flex justify-between items-center">
           <div>
             <span className="text-sm text-gray-500">实付金额</span>

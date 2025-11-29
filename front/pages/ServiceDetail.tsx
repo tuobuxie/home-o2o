@@ -21,13 +21,8 @@ export const ServiceDetail: React.FC = () => {
   }, [id]);
 
   const handleBookClick = () => {
-    if (!isAuthenticated) {
-      // 未登录，跳转到登录页，并记录当前位置以便登录后跳回
-      navigate('/login', { state: { from: location } });
-    } else {
-      // 已登录，跳转到预约页
-      navigate(`/booking/${service?.id}`);
-    }
+    // 直接跳转到预约页，不需要登录
+    navigate(`/booking/${service?.id}`);
   };
 
   if (!service) {
@@ -130,7 +125,7 @@ export const ServiceDetail: React.FC = () => {
             className="flex-1 rounded-full shadow-lg shadow-teal-200"
             onClick={handleBookClick}
         >
-            {isAuthenticated ? '立即预约' : '登录并预约'}
+            立即预约
         </Button>
       </div>
     </div>

@@ -14,18 +14,7 @@ export const Profile: React.FC = () => {
     navigate('/login');
   };
 
-  if (!isAuthenticated) {
-    return (
-        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center pb-24">
-             <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center mb-4 text-gray-400">
-                <User size={40} />
-             </div>
-             <p className="text-gray-500 mb-8">登录以管理您的预约和服务</p>
-             <Button onClick={() => navigate('/login')} className="w-40 shadow-lg shadow-teal-100">立即登录</Button>
-             <BottomNav />
-        </div>
-    );
-  }
+  // 去掉登录检查，允许未登录用户查看个人中心
 
   const menuItems = [
     { icon: <MapPin size={20} />, label: '我的地址', value: '2个' },
@@ -46,8 +35,8 @@ export const Profile: React.FC = () => {
                 className="w-16 h-16 rounded-full border-2 border-white/50 bg-white object-cover"
             />
             <div>
-                <h1 className="text-xl font-bold">{user?.name || '用户'}</h1>
-                <p className="text-teal-100 text-sm">账号: {user?.username}</p>
+                <h1 className="text-xl font-bold">{user?.name || '游客'}</h1>
+                <p className="text-teal-100 text-sm">{user?.username ? `账号: ${user.username}` : '未登录'}</p>
             </div>
          </div>
          
@@ -78,14 +67,18 @@ export const Profile: React.FC = () => {
              ))}
          </div>
 
-         {/* 退出登录 */}
-         <button 
-            onClick={handleLogout}
-            className="w-full bg-white text-red-500 font-medium py-3 rounded-xl shadow-sm flex items-center justify-center space-x-2 active:bg-gray-50 transition-colors"
-         >
-             <LogOut size={18} />
-             <span>退出登录</span>
-         </button>
+         {/* 登录/退出登录按钮 */}
+         {isAuthenticated ? (
+             <button 
+                onClick={handleLogout}
+                className="w-full bg-white text-red-500 font-medium py-3 rounded-xl shadow-sm flex items-center justify-center space-x-2 active:bg-gray-50 transition-colors"
+             >
+                 <LogOut size={18} />
+                 <span>退出登录</span>
+             </button>
+         ) : (
+             <Button onClick={() => navigate('/login')} className="w-full shadow-lg shadow-teal-100">立即登录</Button>
+         )}
 
          <div className="text-center text-xs text-gray-300 pt-4">
              Current Version 1.0.0

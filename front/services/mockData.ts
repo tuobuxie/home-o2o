@@ -84,6 +84,54 @@ export const SERVICES: ServiceItem[] = [
     sales: 80,
     tags: ['金牌月嫂', '持证上岗'],
     features: ['背景调查', '健康体检', '保险保障']
+  },
+  {
+    id: '7',
+    title: '上门维修',
+    price: 60,
+    unit: '次',
+    image: `https://plus.unsplash.com/premium_photo-1663013675008-bd5a7898ac4f${IMG_PARAM}`,
+    description: '专业维修家电、水电、家具等，快速上门，明码标价。',
+    rating: 4.7,
+    sales: 250,
+    tags: ['快速响应', '专业维修'],
+    features: ['免费上门', '配件保真', '保修30天']
+  },
+  {
+    id: '9',
+    title: '宠物护理',
+    price: 88,
+    unit: '次',
+    image: `https://images.unsplash.com/photo-1583337130417-3346a1be7dee${IMG_PARAM}`,
+    description: '专业宠物洗澡、美容、寄养服务，关爱您的宠物。',
+    rating: 4.9,
+    sales: 190,
+    tags: ['爱心服务', '专业美容'],
+    features: ['进口洗护', '环境消毒', '实时监控']
+  },
+  {
+    id: '10',
+    title: '房屋装修',
+    price: 800,
+    unit: '平米',
+    image: `https://plus.unsplash.com/premium_photo-1683121004450-ced102f8db0e${IMG_PARAM}`,
+    description: '专业室内装修设计与施工，一站式服务，环保材料。',
+    rating: 4.6,
+    sales: 60,
+    tags: ['环保材料', '一站式服务'],
+    features: ['免费设计', '全程监理', '售后保修']
+  },
+  {
+    id: '11',
+    title: '园艺服务',
+    price: 120,
+    unit: '次',
+    image: `https://plus.unsplash.com/premium_photo-1661963981959-76c59c589ba4${IMG_PARAM}`,
+    description: '专业园艺设计、绿植养护、草坪修剪等服务。',
+    rating: 4.5,
+    sales: 90,
+    tags: ['绿色生活', '专业养护'],
+    features: ['免费咨询', '定期维护', '植物保真']
   }
 ];
 

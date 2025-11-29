@@ -20,19 +20,7 @@ export const Orders: React.FC = () => {
     }
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 pb-24">
-        <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-6 text-gray-400">
-            <ShoppingBag size={40} />
-        </div>
-        <h2 className="text-xl font-bold text-gray-800 mb-2">您还没有登录</h2>
-        <p className="text-gray-500 mb-8 text-center">登录后查看您的订单信息</p>
-        <Button onClick={() => navigate('/login')} className="w-32">去登录</Button>
-        <BottomNav />
-      </div>
-    );
-  }
+  // 去掉登录检查，允许未登录用户查看订单列表
 
   return (
     <div className="min-h-screen bg-gray-50 pb-24">
