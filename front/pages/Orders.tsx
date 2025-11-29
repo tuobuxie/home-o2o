@@ -43,7 +43,11 @@ export const Orders: React.FC = () => {
       <div className="p-4 space-y-4">
         {MOCK_ORDERS.length > 0 ? (
           MOCK_ORDERS.map((order) => (
-            <div key={order.id} className="bg-white p-4 rounded-xl shadow-sm">
+            <div 
+              key={order.id} 
+              className="bg-white p-4 rounded-xl shadow-sm cursor-pointer hover:shadow-md transition-shadow"
+              onClick={() => navigate(`/order/${order.id}`)}
+            >
               <div className="flex justify-between items-center mb-3 pb-3 border-b border-gray-50">
                 <span className="text-xs text-gray-500">订单号: {order.id}</span>
                 <span className={`text-xs px-2 py-1 rounded ${getStatusColor(order.status)}`}>
@@ -68,12 +72,39 @@ export const Orders: React.FC = () => {
                 </div>
               </div>
               <div className="flex justify-end space-x-2 pt-2">
-                 <Button variant="secondary" className="py-1.5 px-3 text-xs h-auto">联系客服</Button>
+                 <Button 
+                   variant="secondary" 
+                   className="py-1.5 px-3 text-xs h-auto"
+                   onClick={(e) => {
+                     e.stopPropagation();
+                     // 联系客服逻辑
+                   }}
+                 >
+                   联系客服
+                 </Button>
                  {order.status === '已完成' && (
-                    <Button variant="outline" className="py-1.5 px-3 text-xs h-auto">再来一单</Button>
+                    <Button 
+                      variant="outline" 
+                      className="py-1.5 px-3 text-xs h-auto"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // 再来一单逻辑
+                      }}
+                    >
+                      再来一单
+                    </Button>
                  )}
                  {order.status === '待服务' && (
-                    <Button variant="primary" className="py-1.5 px-3 text-xs h-auto">确认完成</Button>
+                    <Button 
+                      variant="primary" 
+                      className="py-1.5 px-3 text-xs h-auto"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // 确认完成逻辑
+                      }}
+                    >
+                      确认完成
+                    </Button>
                  )}
               </div>
             </div>

@@ -17,8 +17,7 @@ export const SERVICES: ServiceItem[] = [
     title: '日常保洁',
     price: 45,
     unit: '小时',
-    // 更换为清洁手套擦拭的特写，加载更稳
-    image: `https://images.unsplash.com/photo-1563453392212-326f5e854473${IMG_PARAM}`,
+    image: `https://plus.unsplash.com/premium_photo-1664372899494-774422f7ce61${IMG_PARAM}`,
     description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
     rating: 4.8,
     sales: 1200,
@@ -31,7 +30,7 @@ export const SERVICES: ServiceItem[] = [
     price: 1,
     unit: '小时',
     // 更换为清洁手套擦拭的特写，加载更稳
-    image: `https://images.unsplash.com/photo-1563453392212-326f5e854473${IMG_PARAM}`,
+    image: `https://plus.unsplash.com/premium_photo-1677681803187-bb618abc585b${IMG_PARAM}`,
     description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
     rating: 4.8,
     sales: 1200,
@@ -43,8 +42,7 @@ export const SERVICES: ServiceItem[] = [
     title: '家电清洗',
     price: 128,
     unit: '台',
-    // 更换为更清晰的厨房油烟机场景
-    image: `https://images.unsplash.com/photo-1556909212-d5b604d0c90d${IMG_PARAM}`,
+    image: `https://plus.unsplash.com/premium_photo-1661719110458-f97f4b0a9bd4${IMG_PARAM}`,
     description: '专业拆洗空调、洗衣机、冰箱、油烟机，杀菌除异味。',
     rating: 4.7,
     sales: 340,
@@ -56,8 +54,7 @@ export const SERVICES: ServiceItem[] = [
     title: '搬家货运',
     price: 280,
     unit: '车',
-    // 更换为搬家纸箱图片，主题明确
-    image: `https://images.unsplash.com/photo-1600585154340-be6161a56a0c${IMG_PARAM}`,
+    image: `https://plus.unsplash.com/premium_photo-1679858780488-13faaa89d175${IMG_PARAM}`,
     description: '小型搬家、同城货运，提供打包服务，明码标价无隐形消费。',
     rating: 4.5,
     sales: 180,
@@ -69,8 +66,7 @@ export const SERVICES: ServiceItem[] = [
     title: '管道疏通',
     price: 80,
     unit: '次',
-    // 卫浴设施
-    image: `https://images.unsplash.com/photo-1585704032915-c3400ca199e7${IMG_PARAM}`,
+    image: `https://plus.unsplash.com/premium_photo-1661662815924-97a8a767a262${IMG_PARAM}`,
     description: '专业设备疏通马桶、地漏、洗菜盆、浴缸等各种管道堵塞。',
     rating: 4.6,
     sales: 210,
@@ -82,8 +78,7 @@ export const SERVICES: ServiceItem[] = [
     title: '保姆月嫂',
     price: 6000,
     unit: '月',
-    // 温馨的母婴/家庭场景
-    image: `https://images.unsplash.com/photo-1519689680058-324335c77eba${IMG_PARAM}`,
+    image: `https://plus.unsplash.com/premium_photo-1676143322259-7788cbf42540${IMG_PARAM}`,
     description: '经验丰富的住家保姆、月嫂，提供育儿、养老、烹饪等全方位服务。',
     rating: 4.9,
     sales: 80,
