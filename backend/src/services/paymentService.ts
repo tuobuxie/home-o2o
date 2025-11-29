@@ -19,16 +19,16 @@ export class PaymentService {
 
     // 生成支付URL
     const paymentUrl = alipaySdk.pageExec('alipay.trade.page.pay', {
-       bizContent: {
-      out_trade_no: params.orderId,
-      total_amount: params.totalAmount,
-      subject: params.subject,
-      body: params.body,
-      product_code: 'FAST_INSTANT_TRADE_PAY',
+      bizContent: {
+        out_trade_no: params.orderId,
+        total_amount: params.totalAmount,
+        subject: params.subject,
+        body: params.body,
+        product_code: 'FAST_INSTANT_TRADE_PAY',
+      },
       return_url: process.env.ALIPAY_RETURN_URL,
       notify_url: process.env.ALIPAY_NOTIFY_URL,
-    },
-    }) ;
+    });
 
     // 记录交易记录
     transactionLogger.createPaymentRecord(
@@ -49,16 +49,16 @@ export class PaymentService {
    
 
     const paymentUrl =  alipaySdk.pageExec("alipay.trade.wap.pay", {
-    bizContent: {
-      out_trade_no: params.orderId,
-      total_amount: params.totalAmount,
-      subject: params.subject,
-      body: params.body,
-      product_code: 'QUICK_WAP_WAY' ,
+      bizContent: {
+        out_trade_no: params.orderId,
+        total_amount: params.totalAmount,
+        subject: params.subject,
+        body: params.body,
+        product_code: 'QUICK_WAP_WAY' ,
+      },
       return_url: process.env.ALIPAY_RETURN_URL,
       notify_url: process.env.ALIPAY_NOTIFY_URL,
-    },
-  });
+    });
 
     // 记录交易记录
     transactionLogger.createPaymentRecord(
