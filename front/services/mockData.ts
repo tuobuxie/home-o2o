@@ -25,6 +25,19 @@ export const SERVICES: ServiceItem[] = [
     tags: ['最热销', '随时约'],
     features: ['自带工具', '身份核验', '不满意重做']
   },
+    {
+    id: '2',
+    title: '日常保洁test',
+    price: 1,
+    unit: '小时',
+    // 更换为清洁手套擦拭的特写，加载更稳
+    image: `https://images.unsplash.com/photo-1563453392212-326f5e854473${IMG_PARAM}`,
+    description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
+    rating: 4.8,
+    sales: 1200,
+    tags: ['最热销', '随时约'],
+    features: ['自带工具', '身份核验', '不满意重做']
+  },
   {
     id: '3',
     title: '家电清洗',
@@ -87,6 +100,11 @@ export interface Order {
   price: number;
   date: string;
   status: string;
+  // 支付宝回调参数
+  timestamp?: string;
+  trade_no?: string;
+  method?: string;
+  app_id?: string;
 }
 
 // 从localStorage获取订单数据
@@ -145,7 +163,12 @@ export const addOrder = (order: Omit<Order, 'date'> & { date?: string }) => {
     image: order.image,
     price: order.price,
     date: formattedDate,
-    status: order.status || '待服务'
+    status: order.status || '待服务',
+    // 添加支付宝回调参数
+    timestamp: order.timestamp,
+    trade_no: order.trade_no,
+    method: order.method,
+    app_id: order.app_id
   };
   
   // 检查订单号是否已存在

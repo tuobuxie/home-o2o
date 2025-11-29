@@ -25,8 +25,8 @@ export class PaymentService {
       subject: params.subject,
       body: params.body,
       product_code: 'FAST_INSTANT_TRADE_PAY',
-      returnUrl: process.env.ALIPAY_RETURN_URL,
-      notifyUrl: process.env.ALIPAY_NOTIFY_URL,
+      return_url: process.env.ALIPAY_RETURN_URL,
+      notify_url: process.env.ALIPAY_NOTIFY_URL,
     },
     }) ;
 
@@ -55,8 +55,8 @@ export class PaymentService {
       subject: params.subject,
       body: params.body,
       product_code: 'QUICK_WAP_WAY' ,
-      returnUrl: process.env.ALIPAY_RETURN_URL,
-      notifyUrl: process.env.ALIPAY_NOTIFY_URL,
+      return_url: process.env.ALIPAY_RETURN_URL,
+      notify_url: process.env.ALIPAY_NOTIFY_URL,
     },
   });
 

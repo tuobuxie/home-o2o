@@ -8,18 +8,22 @@ export const PaymentResult: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // 从URL参数中获取支付状态和订单信息
+  // 从URL参数中获取支付宝回调参数
   const searchParams = new URLSearchParams(location.search);
-  const status = searchParams.get('status') || 'success';
-  const orderId = searchParams.get('orderId') || '';
-  const amount = parseFloat(searchParams.get('amount') || '0');
+  const total_amount = parseFloat(searchParams.get('total_amount') || '0');
+  const timestamp = searchParams.get('timestamp') || '';
+  const trade_no = searchParams.get('trade_no') || '';
+  const method = searchParams.get('method') || '';
+  const app_id = searchParams.get('app_id') || '';
+  const out_trade_no = searchParams.get('out_trade_no') || '';
   
   // 从location.state中获取备用数据（如果URL参数不存在）
   const state = location.state as { amount: number; orderId: string } | null;
-  const finalOrderId = orderId || state?.orderId || 'ORD_UNKNOWN';
-  const finalAmount = amount || state?.amount || 0;
+  const finalOrderId = out_trade_no || state?.orderId || 'ORD_UNKNOWN';
+  const finalAmount = total_amount || state?.amount || 0;
   
-  const isSuccess = status === 'success';
+  // 根据是否有交易号判断支付是否成功
+  const isSuccess = !!trade_no;
 
   // 处理支付回调，添加订单到模拟数据
   useEffect(() => {
@@ -34,10 +38,15 @@ export const PaymentResult: React.FC = () => {
         serviceTitle: service.title,
         image: service.image,
         price: finalAmount,
-        status: '待服务' // 支付成功后默认状态为待服务
+        status: '待服务', // 支付成功后默认状态为待服务
+        // 添加支付宝回调参数
+        timestamp,
+        trade_no,
+        method,
+        app_id
       });
     }
-  }, [isSuccess, finalOrderId, finalAmount]);
+  }, [isSuccess, finalOrderId, finalAmount, timestamp, trade_no, method, app_id]);
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center pt-20 px-6">

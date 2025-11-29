@@ -189,6 +189,12 @@ curl -X POST \
   http://localhost:3001/api/payment/alipay/notify
 ```
 
+curl -X POST \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d 'key1=value1&key2=value2' \
+http://8.159.141.134:3001/api/payment/alipay/notify
+
+
 ### 4. 支付宝返回结果
 
 ```
