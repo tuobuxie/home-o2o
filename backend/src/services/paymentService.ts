@@ -44,8 +44,7 @@ export class PaymentService {
       TransactionType.PAGE_PAY,
       params.totalAmount,
       params.subject,
-      params.body,
-      paymentUrl
+      params.body
     );
 
     return paymentUrl;
@@ -73,8 +72,7 @@ export class PaymentService {
       TransactionType.WAP_PAY,
       params.totalAmount,
       params.subject,
-      params.body,
-      paymentUrl
+      params.body
     );
 
     return paymentUrl;

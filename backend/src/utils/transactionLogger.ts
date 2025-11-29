@@ -22,7 +22,6 @@ export interface TransactionRecord {
   totalAmount: number;
   subject: string;
   body?: string;
-  paymentUrl?: string;
   alipayTradeNo?: string;
   createTime: string;
   updateTime: string;
@@ -68,7 +67,6 @@ export class TransactionLogger {
     totalAmount: number,
     subject: string,
     body?: string,
-    paymentUrl?: string
   ): TransactionRecord {
     const record: TransactionRecord = {
       id: `TXN-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
@@ -78,7 +76,6 @@ export class TransactionLogger {
       totalAmount,
       subject,
       body,
-      paymentUrl,
       createTime: new Date().toISOString(),
       updateTime: new Date().toISOString()
     };
