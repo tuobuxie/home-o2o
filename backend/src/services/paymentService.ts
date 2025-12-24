@@ -1,4 +1,4 @@
-import alipaySdk from '../config/alipay';
+import getAlipaySdk from '../config/alipay';
 import { AlipayFormData } from 'alipay-sdk';
 import transactionLogger, { TransactionType, TransactionStatus } from '../utils/transactionLogger';
 import logger from '../utils/logger';
@@ -8,6 +8,7 @@ export interface CreatePaymentParams {
   totalAmount: number;
   subject: string;
   body: string;
+  merchantId?: string;
 }
 
 export class PaymentService {
@@ -15,7 +16,8 @@ export class PaymentService {
    * 创建支付宝网页支付
    */
   createAlipayPagePayment(params: CreatePaymentParams): string {
-   
+    // 获取对应商户的支付宝SDK实例
+    const alipaySdk = getAlipaySdk(params.merchantId);
 
     // 生成支付URL
     const paymentUrl = alipaySdk.pageExec('alipay.trade.page.pay', {
@@ -46,7 +48,8 @@ export class PaymentService {
    * 创建支付宝手机网站支付
    */
   createAlipayWapPayment(params: CreatePaymentParams): string {
-   
+    // 获取对应商户的支付宝SDK实例
+    const alipaySdk = getAlipaySdk(params.merchantId);
 
     const paymentUrl =  alipaySdk.pageExec("alipay.trade.wap.pay", {
       bizContent: {
@@ -75,7 +78,8 @@ export class PaymentService {
   /**
    * 验证支付宝回调通知
    */
-  verifyAlipayNotify(postData: any): boolean {
+  verifyAlipayNotify(postData: any, merchantId: string = '2021006114625008'): boolean {
+    const alipaySdk = getAlipaySdk(merchantId);
     return alipaySdk.checkNotifySign(postData);
   }
 
@@ -84,8 +88,12 @@ export class PaymentService {
    */
   async handleAlipayNotify(postData: any): Promise<{ success: boolean; message: string }> {
     try {
+      // 注意：回调通知中可能需要从postData中获取商户ID，这里暂时使用默认值
+      // 实际业务中可能需要根据订单号查询对应的商户ID
+      const merchantId = '2021006114625008';
+      
       // 验证签名
-      const isSignValid = this.verifyAlipayNotify(postData);
+      const isSignValid = this.verifyAlipayNotify(postData, merchantId);
       if (!isSignValid) {
         return { success: false, message: 'Invalid signature' };
       }

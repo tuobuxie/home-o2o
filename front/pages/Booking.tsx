@@ -203,6 +203,7 @@ export const Booking: React.FC = () => {
         totalAmount,
         subject: service?.title || '家政服务',
         body: `家政服务：${service?.title || '服务'} - ${form.quantity}${service?.unit || '项'}`,
+        merchantId: service?.merchantId || '',
       });
       
       if (result.success && result.paymentUrl) {
@@ -265,6 +266,7 @@ export const Booking: React.FC = () => {
           <div className="flex-1 flex flex-col justify-between">
             <h3 className="font-bold text-gray-900">{service.title}</h3>
             <p className="text-xs text-gray-500 line-clamp-1">{service.description}</p>
+            <p className="text-xs text-gray-500 mt-1">提供商：{service.merchantName}</p>
             <div className="flex justify-between items-center mt-2">
               <span className="text-teal-600 font-bold">¥{service.price}/{service.unit}</span>
               

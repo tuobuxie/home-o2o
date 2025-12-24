@@ -8,8 +8,8 @@ export class PaymentController {
    */
   async createAlipayPayment(req: Request, res: Response): Promise<void> {
     try {
-      const { orderId, totalAmount, subject, body } = req.body;
-      logger.info(`Creating alipay page payment for order ${orderId}, amount: ${totalAmount}`);
+      const { orderId, totalAmount, subject, body, merchantId } = req.body;
+      logger.info(`Creating alipay page payment for order ${orderId}, amount: ${totalAmount}, merchant: ${merchantId || 'default'}`);
 
       if (!orderId || !totalAmount || !subject) {
         logger.warn(`Missing required parameters for order ${orderId}: ${JSON.stringify(req.body)}`);
@@ -22,6 +22,7 @@ export class PaymentController {
         totalAmount,
         subject,
         body,
+        merchantId,
       });
 
       logger.info(`Alipay page payment created successfully for order ${orderId}`);
@@ -37,8 +38,8 @@ export class PaymentController {
    */
   async createAlipayWapPayment(req: Request, res: Response): Promise<void> {
     try {
-      const { orderId, totalAmount, subject, body } = req.body;
-      logger.info(`Creating alipay wap payment for order ${orderId}, amount: ${totalAmount}`);
+      const { orderId, totalAmount, subject, body, merchantId } = req.body;
+      logger.info(`Creating alipay wap payment for order ${orderId}, amount: ${totalAmount}, merchant: ${merchantId || 'default'}`);
 
       if (!orderId || !totalAmount || !subject) {
         logger.warn(`Missing required parameters for order ${orderId}: ${JSON.stringify(req.body)}`);
@@ -51,6 +52,7 @@ export class PaymentController {
         totalAmount,
         subject,
         body,
+        merchantId,
       });
 
       logger.info(`Alipay wap payment created successfully for order ${orderId}`);

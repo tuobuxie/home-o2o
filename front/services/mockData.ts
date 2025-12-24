@@ -22,7 +22,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.8,
     sales: 1200,
     tags: ['最热销', '随时约'],
-    features: ['自带工具', '身份核验', '不满意重做']
+    features: ['自带工具', '身份核验', '不满意重做'],
+    merchantName: '晨甘',
+    merchantId: '2021006114625008'
   },
     {
     id: '2',
@@ -35,7 +37,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.8,
     sales: 1200,
     tags: ['最热销', '随时约'],
-    features: ['自带工具', '身份核验', '不满意重做']
+    features: ['自带工具', '身份核验', '不满意重做'],
+    merchantName: '雷霆',
+    merchantId: '2021006121657272'
   },
   {
     id: '3',
@@ -47,7 +51,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.7,
     sales: 340,
     tags: ['健康生活'],
-    features: ['高温蒸汽', '无损拆装', '售后保障']
+    features: ['高温蒸汽', '无损拆装', '售后保障'],
+    merchantName: '云创',
+    merchantId: '2021006121623251'
   },
   {
     id: '4',
@@ -59,7 +65,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.5,
     sales: 180,
     tags: ['准时达', '无隐形消费'],
-    features: ['电梯免费', '自带打包', 'GPS定位']
+    features: ['电梯免费', '自带打包', 'GPS定位'],
+    merchantName: '晨甘',
+    merchantId: '2021006114625008'
   },
   {
     id: '5',
@@ -71,7 +79,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.6,
     sales: 210,
     tags: ['快速上门', '不通不收费'],
-    features: ['专业设备', '清理现场', '保修7天']
+    features: ['专业设备', '清理现场', '保修7天'],
+    merchantName: '雷霆',
+    merchantId: '2021006121657272'
   },
   {
     id: '6',
@@ -83,7 +93,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.9,
     sales: 80,
     tags: ['金牌月嫂', '持证上岗'],
-    features: ['背景调查', '健康体检', '保险保障']
+    features: ['背景调查', '健康体检', '保险保障'],
+    merchantName: '云创',
+    merchantId: '2021006121623251'
   },
   {
     id: '7',
@@ -95,7 +107,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.7,
     sales: 250,
     tags: ['快速响应', '专业维修'],
-    features: ['免费上门', '配件保真', '保修30天']
+    features: ['免费上门', '配件保真', '保修30天'],
+    merchantName: '晨甘',
+    merchantId: '2021006114625008'
   },
   {
     id: '9',
@@ -107,7 +121,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.9,
     sales: 190,
     tags: ['爱心服务', '专业美容'],
-    features: ['进口洗护', '环境消毒', '实时监控']
+    features: ['进口洗护', '环境消毒', '实时监控'],
+    merchantName: '雷霆',
+    merchantId: '2021006121657272'
   },
   {
     id: '10',
@@ -119,7 +135,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.6,
     sales: 60,
     tags: ['环保材料', '一站式服务'],
-    features: ['免费设计', '全程监理', '售后保修']
+    features: ['免费设计', '全程监理', '售后保修'],
+    merchantName: '云创',
+    merchantId: '2021006121623251'
   },
   {
     id: '11',
@@ -131,7 +149,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.5,
     sales: 90,
     tags: ['绿色生活', '专业养护'],
-    features: ['免费咨询', '定期维护', '植物保真']
+    features: ['免费咨询', '定期维护', '植物保真'],
+    merchantName: '晨甘',
+    merchantId: '2021006114625008'
   }
 ];
 

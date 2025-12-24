@@ -9,6 +9,7 @@ export interface CreatePaymentParams {
   totalAmount: number;
   subject: string;
   body: string;
+  merchantId: string;
 }
 
 export interface CreatePaymentResponse {

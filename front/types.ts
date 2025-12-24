@@ -9,6 +9,8 @@ export interface ServiceItem {
   sales: number;
   tags: string[];
   features: string[];
+  merchantId: string;
+  merchantName: string;
 }
 
 export interface BookingFormState {

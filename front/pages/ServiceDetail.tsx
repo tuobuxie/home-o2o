@@ -61,6 +61,11 @@ export const ServiceDetail: React.FC = () => {
             </div>
         </div>
 
+        {/* 商户信息 */}
+        <div className="flex items-center mb-4">
+            <span className="text-xs text-gray-500">提供商：{service.merchantName}</span>
+        </div>
+        
         {/* 标签 */}
         <div className="flex space-x-2 mb-6">
             {service.tags.map(tag => (
