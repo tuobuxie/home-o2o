@@ -115,7 +115,7 @@ export const Home: React.FC = () => {
                 {/* 背景图片 */}
                 <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${slide.image})` }}>
                   {/* 渐变叠加层 */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${slide.color} opacity-80`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-r ${slide.color} opacity-30`}></div>
                 </div>
                 
                 {/* 轮播内容 */}
