@@ -139,8 +139,8 @@ export const Booking: React.FC = () => {
   // 表单状态
   const [form, setForm] = useState<BookingFormState>({
     contactName: '张先生', 
-    phone: '13800138000',
-    address: '北京市朝阳区三里屯SOHO A座',
+    phone: '18944532554',
+    address: '哈尔滨市南岗区汉阳街 18 号',
     date: new Date().toISOString().split('T')[0],
     time: '14:00',
     quantity: 1,
