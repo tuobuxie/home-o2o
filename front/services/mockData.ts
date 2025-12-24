@@ -38,8 +38,38 @@ export const SERVICES: ServiceItem[] = [
     sales: 1200,
     tags: ['最热销', '随时约'],
     features: ['自带工具', '身份核验', '不满意重做'],
+    merchantName: '晨甘',
+    merchantId: '2021006114625008'
+  },
+    {
+    id: '33',
+    title: '日常保洁test',
+    price: 1,
+    unit: '小时',
+    // 更换为清洁手套擦拭的特写，加载更稳
+    image: `https://plus.unsplash.com/premium_photo-1677681803187-bb618abc585b${IMG_PARAM}`,
+    description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
+    rating: 4.8,
+    sales: 1200,
+    tags: ['最热销', '随时约'],
+    features: ['自带工具', '身份核验', '不满意重做'],
     merchantName: '雷霆',
     merchantId: '2021006121657272'
+  },
+    {
+    id: '32',
+    title: '日常保洁test',
+    price: 1,
+    unit: '小时',
+    // 更换为清洁手套擦拭的特写，加载更稳
+    image: `https://plus.unsplash.com/premium_photo-1677681803187-bb618abc585b${IMG_PARAM}`,
+    description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
+    rating: 4.8,
+    sales: 1200,
+    tags: ['最热销', '随时约'],
+    features: ['自带工具', '身份核验', '不满意重做'],
+    merchantName: '云创',
+    merchantId: '2021006121623251'
   },
   {
     id: '3',
