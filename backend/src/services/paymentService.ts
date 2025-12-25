@@ -8,7 +8,7 @@ export interface CreatePaymentParams {
   totalAmount: number;
   subject: string;
   body: string;
-  merchantId?: string;
+  merchantId: string;
 }
 
 export class PaymentService {
@@ -78,7 +78,7 @@ export class PaymentService {
   /**
    * 验证支付宝回调通知
    */
-  verifyAlipayNotify(postData: any, merchantId: string = '2021006114625008'): boolean {
+  verifyAlipayNotify(postData: any, merchantId: string ): boolean {
     const alipaySdk = getAlipaySdk(merchantId);
     return alipaySdk.checkNotifySign(postData);
   }
