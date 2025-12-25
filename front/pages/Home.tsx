@@ -77,18 +77,8 @@ export const Home: React.FC = () => {
     <div className="min-h-screen bg-gray-50 pb-20">
       <GlobalStyles />
       {/* 头部定位与搜索 */}
-      <header className="bg-teal-500 p-4 pb-8 rounded-b-[30px] shadow-sm text-white sticky top-0 z-30">
+      <header className="bg-teal-500 p-4 pb-8  shadow-sm text-white sticky top-0 z-30">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center space-x-1">
-              <MapPin size={18} />
-              <span className="font-medium text-sm">北京市·朝阳区</span>
-            </div>
-            <div className="text-xs bg-teal-600 px-2 py-1 rounded-full">
-              高温消毒季
-            </div>
-          </div>
-          
           <div className="relative max-w-2xl">
             <input 
               type="text" 

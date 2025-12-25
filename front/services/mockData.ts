@@ -28,7 +28,7 @@ export const SERVICES: ServiceItem[] = [
   },
     {
     id: '2',
-    title: '日常保洁test',
+    title: '日常保洁-活动价',
     price: 1,
     unit: '小时',
     // 更换为清洁手套擦拭的特写，加载更稳
@@ -144,7 +144,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: '11',
-    title: '日常保洁test',
+    title: '日常保洁-活动价',
     price: 1,
     unit: '小时',
     // 更换为清洁手套擦拭的特写，加载更稳

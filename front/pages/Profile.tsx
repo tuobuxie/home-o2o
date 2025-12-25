@@ -30,7 +30,7 @@ export const Profile: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 pb-24">
       {/* 头部卡片 */}
-      <div className="bg-teal-500 pt-12 pb-16 px-6 rounded-b-[40px] shadow-sm text-white relative">
+      <div className="bg-teal-500 pt-12 pb-16 px-6  shadow-sm text-white relative">
          <div 
            className="flex items-center space-x-4 cursor-pointer transition-transform hover:scale-[1.01] active:scale-[0.99]"
            onClick={() => !isAuthenticated && navigate('/login')}
