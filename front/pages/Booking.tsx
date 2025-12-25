@@ -206,9 +206,9 @@ export const Booking: React.FC = () => {
       const result = await paymentApi({
         orderId,
         totalAmount,
-        subject: service?.title || '家政服务',
-        body: `家政服务：${service?.title || '服务'} - ${form.quantity}${service?.unit || '项'}`,
-        merchantId: service?.merchantId || '',
+        subject: `${service.title} - ${service.merchantName}`,
+        body: `家政服务：${service.title} - ${form.quantity}${service.unit || '项'}`,
+        merchantId: service.merchantId,
       });
       
       if (result.success && result.paymentUrl) {
