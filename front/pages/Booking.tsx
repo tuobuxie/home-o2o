@@ -186,6 +186,11 @@ export const Booking: React.FC = () => {
       alert('请填写完整联系信息');
       return;
     }
+    
+    if (!service || !service.merchantId) {
+      alert('服务信息不完整，请稍后重试');
+      return;
+    }
 
     setIsSubmitting(true);
     

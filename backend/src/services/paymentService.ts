@@ -16,6 +16,11 @@ export class PaymentService {
    * 创建支付宝网页支付
    */
   createAlipayPagePayment(params: CreatePaymentParams): string {
+    // 校验商户ID是否为空
+    if (!params.merchantId || params.merchantId.trim() === '') {
+      throw new Error('merchantId is required and cannot be empty');
+    }
+    
     // 获取对应商户的支付宝SDK实例
     const alipaySdk = getAlipaySdk(params.merchantId);
 
@@ -48,6 +53,11 @@ export class PaymentService {
    * 创建支付宝手机网站支付
    */
   createAlipayWapPayment(params: CreatePaymentParams): string {
+    // 校验商户ID是否为空
+    if (!params.merchantId || params.merchantId.trim() === '') {
+      throw new Error('merchantId is required and cannot be empty');
+    }
+    
     // 获取对应商户的支付宝SDK实例
     const alipaySdk = getAlipaySdk(params.merchantId);
 
@@ -79,6 +89,11 @@ export class PaymentService {
    * 验证支付宝回调通知
    */
   verifyAlipayNotify(postData: any, merchantId: string ): boolean {
+    // 校验商户ID是否为空
+    if (!merchantId || merchantId.trim() === '') {
+      throw new Error('merchantId is required and cannot be empty');
+    }
+    
     const alipaySdk = getAlipaySdk(merchantId);
     return alipaySdk.checkNotifySign(postData);
   }
