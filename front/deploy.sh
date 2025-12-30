@@ -77,7 +77,7 @@ if pm2 list | grep -q "home-o2o-frontend"; then
     pm2 restart home-o2o-frontend
 else
     echo "⚠️ 服务不存在，正在启动..."
-    pm2 start "http-server -p 3000 -d false dist" --name home-o2o-frontend
+    pm2 start "http-server -p 80 -d false dist" --name home-o2o-frontend
 fi
 
 if [ $? -ne 0 ]; then
@@ -102,7 +102,7 @@ pm2 status home-o2o-frontend
 
 # 10. 显示访问地址
 echo "\n10. 访问地址："
-echo "   - 前端应用：http://localhost:3000"
+echo "   - 前端应用：http://localhost:80"
 
 # 11. 显示日志
 echo "\n11. 查看实时日志："
