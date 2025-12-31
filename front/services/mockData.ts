@@ -1,4 +1,25 @@
-import { ServiceItem } from '../types';
+import { ServiceItem, Merchant } from '../types';
+
+// 商户信息维护对象
+export const MERCHANTS: Record<string, Merchant> = {
+  '2021006114625008': {
+    id: '2021006114625008',
+    name: '晨甘'
+  },
+  '2021006121657272': {
+    id: '2021006121657272',
+    name: '雷霆'
+  },
+  '2021006121623251': {
+    id: '2021006121623251',
+    name: '云创'
+  }
+};
+
+// 根据商户id获取商户信息的辅助函数
+export const getMerchantById = (merchantId: string): Merchant | undefined => {
+  return MERCHANTS[merchantId];
+};
 
 export const MOCK_USER = {
   username: 'admin',
@@ -23,7 +44,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 1200,
     tags: ['最热销', '随时约'],
     features: ['自带工具', '身份核验', '不满意重做'],
-    merchantName: '晨甘',
     merchantId: '2021006114625008'
   },
     {
@@ -38,7 +58,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 1200,
     tags: ['最热销', '随时约'],
     features: ['自带工具', '身份核验', '不满意重做'],
-    merchantName: '晨甘',
     merchantId: '2021006114625008'
   },
 
@@ -53,7 +72,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 340,
     tags: ['健康生活'],
     features: ['高温蒸汽', '无损拆装', '售后保障'],
-    merchantName: '晨甘',
     merchantId: '2021006114625008'
   },
   {
@@ -67,7 +85,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 180,
     tags: ['准时达', '无隐形消费'],
     features: ['电梯免费', '自带打包', 'GPS定位'],
-    merchantName: '晨甘',
     merchantId: '2021006114625008'
   },
   {
@@ -81,7 +98,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 210,
     tags: ['快速上门', '不通不收费'],
     features: ['专业设备', '清理现场', '保修7天'],
-    merchantName: '晨甘',
     merchantId: '2021006114625008'
   },
   {
@@ -95,7 +111,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 80,
     tags: ['金牌月嫂', '持证上岗'],
     features: ['背景调查', '健康体检', '保险保障'],
-    merchantName: '晨甘',
     merchantId: '2021006114625008'
   },
   {
@@ -109,13 +124,12 @@ export const SERVICES: ServiceItem[] = [
     sales: 250,
     tags: ['快速响应', '专业维修'],
     features: ['免费上门', '配件保真', '保修30天'],
-    merchantName: '晨甘',
     merchantId: '2021006114625008'
   },
   {
     id: '9',
     title: '宠物护理',
-    price: 88,
+    price: 100,
     unit: '次',
     image: `https://images.unsplash.com/photo-1583337130417-3346a1be7dee${IMG_PARAM}`,
     description: '专业宠物洗澡、美容、寄养服务，关爱您的宠物。',
@@ -123,7 +137,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 190,
     tags: ['爱心服务', '专业美容'],
     features: ['进口洗护', '环境消毒', '实时监控'],
-    merchantName: '晨甘',
     merchantId: '2021006114625008'
   },
 
@@ -139,7 +152,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 1200,
     tags: ['最热销', '随时约'],
     features: ['自带工具', '身份核验', '不满意重做'],
-    merchantName: '雷霆',
     merchantId: '2021006121657272'
   },
   {
@@ -154,7 +166,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 1200,
     tags: ['最热销', '随时约'],
     features: ['自带工具', '身份核验', '不满意重做'],
-    merchantName: '雷霆',
     merchantId: '2021006121657272'
   },
   {
@@ -168,7 +179,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 340,
     tags: ['健康生活'],
     features: ['高温蒸汽', '无损拆装', '售后保障'],
-    merchantName: '雷霆',
     merchantId: '2021006121657272'
   },
   {
@@ -182,7 +192,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 180,
     tags: ['准时达', '无隐形消费'],
     features: ['电梯免费', '自带打包', 'GPS定位'],
-    merchantName: '雷霆',
     merchantId: '2021006121657272'
   },
   {
@@ -196,7 +205,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 210,
     tags: ['快速上门', '不通不收费'],
     features: ['专业设备', '清理现场', '保修7天'],
-    merchantName: '雷霆',
     merchantId: '2021006121657272'
   },
   {
@@ -210,7 +218,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 80,
     tags: ['金牌月嫂', '持证上岗'],
     features: ['背景调查', '健康体检', '保险保障'],
-    merchantName: '雷霆',
     merchantId: '2021006121657272'
   },
   {
@@ -224,13 +231,12 @@ export const SERVICES: ServiceItem[] = [
     sales: 250,
     tags: ['快速响应', '专业维修'],
     features: ['免费上门', '配件保真', '保修30天'],
-    merchantName: '雷霆',
     merchantId: '2021006121657272'
   },
   {
     id: '18',
     title: '宠物护理',
-    price: 88,
+    price: 100,
     unit: '次',
     image: `https://images.unsplash.com/photo-1583337130417-3346a1be7dee${IMG_PARAM}`,
     description: '专业宠物洗澡、美容、寄养服务，关爱您的宠物。',
@@ -238,7 +244,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 190,
     tags: ['爱心服务', '专业美容'],
     features: ['进口洗护', '环境消毒', '实时监控'],
-    merchantName: '雷霆',
     merchantId: '2021006121657272'
   },
   // 云创商户服务项目
@@ -253,7 +258,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 1200,
     tags: ['最热销', '随时约'],
     features: ['自带工具', '身份核验', '不满意重做'],
-    merchantName: '云创',
     merchantId: '2021006121623251'
   },
   {
@@ -268,7 +272,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 1200,
     tags: ['最热销', '随时约'],
     features: ['自带工具', '身份核验', '不满意重做'],
-    merchantName: '云创',
     merchantId: '2021006121623251'
   },
   {
@@ -282,7 +285,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 340,
     tags: ['健康生活'],
     features: ['高温蒸汽', '无损拆装', '售后保障'],
-    merchantName: '云创',
     merchantId: '2021006121623251'
   },
   {
@@ -296,7 +298,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 180,
     tags: ['准时达', '无隐形消费'],
     features: ['电梯免费', '自带打包', 'GPS定位'],
-    merchantName: '云创',
     merchantId: '2021006121623251'
   },
   {
@@ -310,7 +311,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 210,
     tags: ['快速上门', '不通不收费'],
     features: ['专业设备', '清理现场', '保修7天'],
-    merchantName: '云创',
     merchantId: '2021006121623251'
   },
   {
@@ -324,7 +324,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 80,
     tags: ['金牌月嫂', '持证上岗'],
     features: ['背景调查', '健康体检', '保险保障'],
-    merchantName: '云创',
     merchantId: '2021006121623251'
   },
   {
@@ -338,13 +337,12 @@ export const SERVICES: ServiceItem[] = [
     sales: 250,
     tags: ['快速响应', '专业维修'],
     features: ['免费上门', '配件保真', '保修30天'],
-    merchantName: '云创',
     merchantId: '2021006121623251'
   },
   {
     id: '28',
     title: '宠物护理',
-    price: 88,
+    price: 100,
     unit: '次',
     image: `https://images.unsplash.com/photo-1583337130417-3346a1be7dee${IMG_PARAM}`,
     description: '专业宠物洗澡、美容、寄养服务，关爱您的宠物。',
@@ -352,7 +350,6 @@ export const SERVICES: ServiceItem[] = [
     sales: 190,
     tags: ['爱心服务', '专业美容'],
     features: ['进口洗护', '环境消毒', '实时监控'],
-    merchantName: '云创',
     merchantId: '2021006121623251'
   }
 

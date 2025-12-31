@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, Share2, CheckCircle, Star } from 'lucide-react';
-import { SERVICES, getServiceById } from '../services/mockData';
+import { SERVICES, getServiceById, getMerchantById } from '../services/mockData';
 import { ServiceItem } from '../types';
 import { Button } from '../components/Button';
 import { useAuth } from '../contexts/AuthContext';
@@ -63,7 +63,7 @@ export const ServiceDetail: React.FC = () => {
 
         {/* 商户信息 */}
         <div className="flex items-center mb-4">
-            <span className="text-xs text-gray-500">提供商：{service.merchantName}</span>
+            <span className="text-xs text-gray-500">提供商：{getMerchantById(service.merchantId)?.name}</span>
         </div>
         
         {/* 标签 */}

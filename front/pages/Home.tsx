@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SERVICES } from '../services/mockData';
+import { SERVICES, getMerchantById } from '../services/mockData';
 import { MapPin, Search, Star } from 'lucide-react';
 import { BottomNav } from '../components/BottomNav';
 
@@ -54,12 +54,13 @@ export const Home: React.FC = () => {
   ];
   
   // 提供商列表
-  const merchants = ['全部', ...Array.from(new Set(SERVICES.map(service => service.merchantName)))];
+  const merchants = ['全部', ...Array.from(new Set(SERVICES.map(service => getMerchantById(service.merchantId)?.name || '未知商家')))];
   
   // 筛选服务
   const filteredServices = SERVICES.filter(service => {
     // 提供商筛选
-    const matchesMerchant = selectedMerchant === '全部' || service.merchantName === selectedMerchant;
+    const merchantName = getMerchantById(service.merchantId)?.name || '未知商家';
+    const matchesMerchant = selectedMerchant === '全部' || merchantName === selectedMerchant;
     
     return matchesMerchant;
   });
@@ -148,32 +149,34 @@ export const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* 筛选区域 */}
-        <div className="bg-white rounded-xl shadow-sm p-4 mb-6">
-          {/* 提供商筛选 */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-700 mb-2">服务提供商</h3>
-            <div className="flex overflow-x-auto pb-2 scrollbar-hide space-x-3">
+        {/* 热门推荐标题与筛选 */}
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-bold text-gray-800 text-lg">
+            热门推荐
+            {selectedMerchant !== '全部' && ` (${selectedMerchant})`}
+          </h3>
+          
+          {/* 服务提供商筛选下拉框 */}
+          <div className="relative">
+            <select
+              value={selectedMerchant}
+              onChange={(e) => setSelectedMerchant(e.target.value)}
+              className="appearance-none bg-white border border-gray-200 hover:border-teal-300 text-gray-700 text-sm font-medium py-2 px-4 pr-8 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors cursor-pointer"
+            >
               {merchants.map((merchant, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedMerchant(merchant)}
-                  className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${selectedMerchant === merchant 
-                    ? 'bg-teal-500 text-white shadow-md transform scale-105' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-teal-100'}`}
-                >
+                <option key={idx} value={merchant}>
                   {merchant}
-                </button>
+                </option>
               ))}
+            </select>
+            {/* 下拉箭头 */}
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </div>
           </div>
         </div>
-
-        {/* 热门推荐列表 */}
-        <h3 className="font-bold text-gray-800 text-lg mb-4">
-          热门推荐
-          {selectedMerchant !== '全部' && ` (${selectedMerchant})`}
-        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredServices.map((service) => (
             <div 
@@ -189,7 +192,7 @@ export const Home: React.FC = () => {
               <div>
                 <h4 className="font-bold text-gray-900 text-base mb-1">{service.title}</h4>
                 <p className="text-xs text-gray-500 mb-2 line-clamp-2">{service.description}</p>
-                <p className="text-xs text-gray-500 mb-3">提供商：{service.merchantName}</p>
+                <p className="text-xs text-gray-500 mb-3">提供商：{getMerchantById(service.merchantId)?.name || '未知商家'}</p>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2 text-xs text-gray-500">
                         <span className="flex items-center text-orange-400">

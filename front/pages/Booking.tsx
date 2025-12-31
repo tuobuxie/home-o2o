@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, MapPin, Clock, Calendar, ShieldCheck, Loader2, ScanLine } from 'lucide-react';
-import { getServiceById, simulateApiCall } from '../services/mockData';
+import { getServiceById, simulateApiCall, getMerchantById } from '../services/mockData';
 import { createAlipayPayment, createAlipayWapPayment } from '../services/apiService';
 import { ServiceItem, BookingFormState } from '../types';
 import { Button } from '../components/Button';
@@ -203,10 +203,11 @@ export const Booking: React.FC = () => {
       const paymentApi = isMobileDevice() ? createAlipayWapPayment : createAlipayPayment;
       
       // 调用后端API创建支付宝支付
+      const merchantName = getMerchantById(service.merchantId)?.name || '未知商家';
       const result = await paymentApi({
         orderId,
         totalAmount,
-        subject: `${service.title} - ${service.merchantName}`,
+        subject: `${service.title} - ${merchantName}`,
         body: `家政服务：${service.title} - ${form.quantity}${service.unit || '项'}`,
         merchantId: service.merchantId,
       });
@@ -271,7 +272,7 @@ export const Booking: React.FC = () => {
           <div className="flex-1 flex flex-col justify-between">
             <h3 className="font-bold text-gray-900">{service.title}</h3>
             <p className="text-xs text-gray-500 line-clamp-1">{service.description}</p>
-            <p className="text-xs text-gray-500 mt-1">提供商：{service.merchantName}</p>
+            <p className="text-xs text-gray-500 mt-1">提供商：{getMerchantById(service.merchantId)?.name || '未知商家'}</p>
             <div className="flex justify-between items-center mt-2">
               <span className="text-teal-600 font-bold">¥{service.price}/{service.unit}</span>
               

@@ -10,7 +10,12 @@ export interface ServiceItem {
   tags: string[];
   features: string[];
   merchantId: string;
-  merchantName: string;
+}
+
+// 商户信息类型
+export interface Merchant {
+  id: string;
+  name: string;
 }
 
 export interface BookingFormState {
