@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, Share2, CheckCircle, Star } from 'lucide-react';
-import { SERVICES, getServiceById, getMerchantById } from '../services/mockData';
+import { SERVICES, getServiceById, getMerchantById, MERCHANTS } from '../services/mockData';
 import { ServiceItem } from '../types';
 import { Button } from '../components/Button';
 import { useAuth } from '../contexts/AuthContext';
@@ -12,6 +12,9 @@ export const ServiceDetail: React.FC = () => {
   const location = useLocation();
   const [service, setService] = useState<ServiceItem | null>(null);
   const { isAuthenticated } = useAuth();
+  
+  // 从 location.state 获取商户ID，如果没有则使用默认商户
+  const merchantId = (location.state as { merchantId?: string })?.merchantId || Object.values(MERCHANTS)[0]?.id || null;
 
   useEffect(() => {
     if (id) {
@@ -21,8 +24,10 @@ export const ServiceDetail: React.FC = () => {
   }, [id]);
 
   const handleBookClick = () => {
-    // 直接跳转到预约页，不需要登录
-    navigate(`/booking/${service?.id}`);
+    // 直接跳转到预约页，传递商户ID
+    navigate(`/booking/${service?.id}`, {
+      state: { merchantId }
+    });
   };
 
   if (!service) {
@@ -62,9 +67,11 @@ export const ServiceDetail: React.FC = () => {
         </div>
 
         {/* 商户信息 */}
-        <div className="flex items-center mb-4">
-            <span className="text-xs text-gray-500">提供商：{getMerchantById(service.merchantId)?.name}</span>
-        </div>
+        {merchantId && (
+          <div className="flex items-center mb-4">
+            <span className="text-xs text-gray-500">提供商：{getMerchantById(merchantId)?.name || '未知商家'}</span>
+          </div>
+        )}
         
         {/* 标签 */}
         <div className="flex space-x-2 mb-6">

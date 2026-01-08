@@ -9,7 +9,6 @@ export interface ServiceItem {
   sales: number;
   tags: string[];
   features: string[];
-  merchantId: string;
 }
 
 // 商户信息类型

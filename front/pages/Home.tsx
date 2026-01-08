@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SERVICES, getMerchantById } from '../services/mockData';
+import { SERVICES, getMerchantById, MERCHANTS } from '../services/mockData';
 import { MapPin, Search, Star } from 'lucide-react';
 import { BottomNav } from '../components/BottomNav';
 
@@ -53,17 +53,28 @@ export const Home: React.FC = () => {
     }
   ];
   
-  // 提供商列表
-  const merchants = ['全部', ...Array.from(new Set(SERVICES.map(service => getMerchantById(service.merchantId)?.name || '未知商家')))];
+  // 提供商列表 - 所有商户都有相同的服务产品
+  const merchants = ['全部', ...Object.values(MERCHANTS).map(m => m.name)];
   
-  // 筛选服务
-  const filteredServices = SERVICES.filter(service => {
-    // 提供商筛选
-    const merchantName = getMerchantById(service.merchantId)?.name || '未知商家';
-    const matchesMerchant = selectedMerchant === '全部' || merchantName === selectedMerchant;
-    
-    return matchesMerchant;
-  });
+  // 根据商户名称获取商户ID
+  const getMerchantIdByName = (name: string): string | null => {
+    if (name === '全部') return null;
+    const merchant = Object.values(MERCHANTS).find(m => m.name === name);
+    return merchant?.id || null;
+  };
+  
+  // 筛选服务 - 所有服务对所有商户都可见
+  const filteredServices = SERVICES;
+  
+  // 获取当前选中的商户ID
+  const selectedMerchantId = getMerchantIdByName(selectedMerchant);
+  
+  // 处理服务点击，传递选中的商户ID
+  const handleServiceClick = (serviceId: string) => {
+    navigate(`/service/${serviceId}`, {
+      state: { merchantId: selectedMerchantId }
+    });
+  };
   
   // 自动轮播效果
   React.useEffect(() => {
@@ -181,7 +192,7 @@ export const Home: React.FC = () => {
           {filteredServices.map((service) => (
             <div 
               key={service.id} 
-              onClick={() => navigate(`/service/${service.id}`)}
+              onClick={() => handleServiceClick(service.id)}
               className="bg-white p-4 rounded-xl shadow-sm hover:shadow-lg hover:shadow-teal-100 transition-all cursor-pointer active:bg-teal-50"
             >
               <img 
@@ -192,7 +203,9 @@ export const Home: React.FC = () => {
               <div>
                 <h4 className="font-bold text-gray-900 text-base mb-1">{service.title}</h4>
                 <p className="text-xs text-gray-500 mb-2 line-clamp-2">{service.description}</p>
-                <p className="text-xs text-gray-500 mb-3">提供商：{getMerchantById(service.merchantId)?.name || '未知商家'}</p>
+                {selectedMerchant !== '全部' && (
+                  <p className="text-xs text-gray-500 mb-3">提供商：{selectedMerchant}</p>
+                )}
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2 text-xs text-gray-500">
                         <span className="flex items-center text-orange-400">

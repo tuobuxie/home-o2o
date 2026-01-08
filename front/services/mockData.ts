@@ -13,6 +13,10 @@ export const MERCHANTS: Record<string, Merchant> = {
   '2021006121623251': {
     id: '2021006121623251',
     name: '云创'
+  },
+  '2021006123684857': {
+    id: '2021006123684857',
+    name: '蓝海'
   }
 };
 
@@ -43,8 +47,7 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.8,
     sales: 1200,
     tags: ['最热销', '随时约'],
-    features: ['自带工具', '身份核验', '不满意重做'],
-    merchantId: '2021006114625008'
+    features: ['自带工具', '身份核验', '不满意重做']
   },
     {
     id: '2',
@@ -57,8 +60,7 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.8,
     sales: 1200,
     tags: ['最热销', '随时约'],
-    features: ['自带工具', '身份核验', '不满意重做'],
-    merchantId: '2021006114625008'
+    features: ['自带工具', '身份核验', '不满意重做']
   },
 
   {
@@ -71,8 +73,7 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.7,
     sales: 340,
     tags: ['健康生活'],
-    features: ['高温蒸汽', '无损拆装', '售后保障'],
-    merchantId: '2021006114625008'
+    features: ['高温蒸汽', '无损拆装', '售后保障']
   },
   {
     id: '4',
@@ -84,8 +85,7 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.5,
     sales: 180,
     tags: ['准时达', '无隐形消费'],
-    features: ['电梯免费', '自带打包', 'GPS定位'],
-    merchantId: '2021006114625008'
+    features: ['电梯免费', '自带打包', 'GPS定位']
   },
   {
     id: '5',
@@ -97,8 +97,7 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.6,
     sales: 210,
     tags: ['快速上门', '不通不收费'],
-    features: ['专业设备', '清理现场', '保修7天'],
-    merchantId: '2021006114625008'
+    features: ['专业设备', '清理现场', '保修7天']
   },
   {
     id: '6',
@@ -110,8 +109,7 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.9,
     sales: 80,
     tags: ['金牌月嫂', '持证上岗'],
-    features: ['背景调查', '健康体检', '保险保障'],
-    merchantId: '2021006114625008'
+    features: ['背景调查', '健康体检', '保险保障']
   },
   {
     id: '7',
@@ -123,8 +121,7 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.7,
     sales: 250,
     tags: ['快速响应', '专业维修'],
-    features: ['免费上门', '配件保真', '保修30天'],
-    merchantId: '2021006114625008'
+    features: ['免费上门', '配件保真', '保修30天']
   },
   {
     id: '9',
@@ -136,222 +133,9 @@ export const SERVICES: ServiceItem[] = [
     rating: 4.9,
     sales: 190,
     tags: ['爱心服务', '专业美容'],
-    features: ['进口洗护', '环境消毒', '实时监控'],
-    merchantId: '2021006114625008'
-  },
-
-  // 雷霆商户服务项目
-  {
-    id: '10',
-    title: '日常保洁',
-    price: 45,
-    unit: '小时',
-    image: `https://plus.unsplash.com/premium_photo-1664372899494-774422f7ce61${IMG_PARAM}`,
-    description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
-    rating: 4.8,
-    sales: 1200,
-    tags: ['最热销', '随时约'],
-    features: ['自带工具', '身份核验', '不满意重做'],
-    merchantId: '2021006121657272'
-  },
-  {
-    id: '11',
-    title: '日常保洁-活动价',
-    price: 1,
-    unit: '小时',
-    // 更换为清洁手套擦拭的特写，加载更稳
-    image: `https://plus.unsplash.com/premium_photo-1677681803187-bb618abc585b${IMG_PARAM}`,
-    description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
-    rating: 4.8,
-    sales: 1200,
-    tags: ['最热销', '随时约'],
-    features: ['自带工具', '身份核验', '不满意重做'],
-    merchantId: '2021006121657272'
-  },
-  {
-    id: '12',
-    title: '家电清洗',
-    price: 128,
-    unit: '台',
-    image: `https://plus.unsplash.com/premium_photo-1661719110458-f97f4b0a9bd4${IMG_PARAM}`,
-    description: '专业拆洗空调、洗衣机、冰箱、油烟机，杀菌除异味。',
-    rating: 4.7,
-    sales: 340,
-    tags: ['健康生活'],
-    features: ['高温蒸汽', '无损拆装', '售后保障'],
-    merchantId: '2021006121657272'
-  },
-  {
-    id: '13',
-    title: '搬家货运',
-    price: 280,
-    unit: '车',
-    image: `https://plus.unsplash.com/premium_photo-1679858780488-13faaa89d175${IMG_PARAM}`,
-    description: '小型搬家、同城货运，提供打包服务，明码标价无隐形消费。',
-    rating: 4.5,
-    sales: 180,
-    tags: ['准时达', '无隐形消费'],
-    features: ['电梯免费', '自带打包', 'GPS定位'],
-    merchantId: '2021006121657272'
-  },
-  {
-    id: '14',
-    title: '管道疏通',
-    price: 20,
-    unit: '次',
-    image: `https://plus.unsplash.com/premium_photo-1661662815924-97a8a767a262${IMG_PARAM}`,
-    description: '专业设备疏通马桶、地漏、洗菜盆、浴缸等各种管道堵塞。',
-    rating: 4.6,
-    sales: 210,
-    tags: ['快速上门', '不通不收费'],
-    features: ['专业设备', '清理现场', '保修7天'],
-    merchantId: '2021006121657272'
-  },
-  {
-    id: '15',
-    title: '保姆月嫂',
-    price: 6000,
-    unit: '月',
-    image: `https://plus.unsplash.com/premium_photo-1676143322259-7788cbf42540${IMG_PARAM}`,
-    description: '经验丰富的住家保姆、月嫂，提供育儿、养老、烹饪等全方位服务。',
-    rating: 4.9,
-    sales: 80,
-    tags: ['金牌月嫂', '持证上岗'],
-    features: ['背景调查', '健康体检', '保险保障'],
-    merchantId: '2021006121657272'
-  },
-  {
-    id: '16',
-    title: '上门维修',
-    price: 10,
-    unit: '次',
-    image: `https://plus.unsplash.com/premium_photo-1663013675008-bd5a7898ac4f${IMG_PARAM}`,
-    description: '专业维修家电、水电、家具等，快速上门，明码标价。',
-    rating: 4.7,
-    sales: 250,
-    tags: ['快速响应', '专业维修'],
-    features: ['免费上门', '配件保真', '保修30天'],
-    merchantId: '2021006121657272'
-  },
-  {
-    id: '18',
-    title: '宠物护理',
-    price: 100,
-    unit: '次',
-    image: `https://images.unsplash.com/photo-1583337130417-3346a1be7dee${IMG_PARAM}`,
-    description: '专业宠物洗澡、美容、寄养服务，关爱您的宠物。',
-    rating: 4.9,
-    sales: 190,
-    tags: ['爱心服务', '专业美容'],
-    features: ['进口洗护', '环境消毒', '实时监控'],
-    merchantId: '2021006121657272'
-  },
-  // 云创商户服务项目
-  {
-    id: '20',
-    title: '日常保洁',
-    price: 45,
-    unit: '小时',
-    image: `https://plus.unsplash.com/premium_photo-1664372899494-774422f7ce61${IMG_PARAM}`,
-    description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
-    rating: 4.8,
-    sales: 1200,
-    tags: ['最热销', '随时约'],
-    features: ['自带工具', '身份核验', '不满意重做'],
-    merchantId: '2021006121623251'
-  },
-  {
-    id: '21',
-    title: '日常保洁test',
-    price: 1,
-    unit: '小时',
-    // 更换为清洁手套擦拭的特写，加载更稳
-    image: `https://plus.unsplash.com/premium_photo-1677681803187-bb618abc585b${IMG_PARAM}`,
-    description: '标准居家表面清洁，包括客厅、卧室、厨房、卫生间表面擦拭与地面清洁。',
-    rating: 4.8,
-    sales: 1200,
-    tags: ['最热销', '随时约'],
-    features: ['自带工具', '身份核验', '不满意重做'],
-    merchantId: '2021006121623251'
-  },
-  {
-    id: '22',
-    title: '家电清洗',
-    price: 128,
-    unit: '台',
-    image: `https://plus.unsplash.com/premium_photo-1661719110458-f97f4b0a9bd4${IMG_PARAM}`,
-    description: '专业拆洗空调、洗衣机、冰箱、油烟机，杀菌除异味。',
-    rating: 4.7,
-    sales: 340,
-    tags: ['健康生活'],
-    features: ['高温蒸汽', '无损拆装', '售后保障'],
-    merchantId: '2021006121623251'
-  },
-  {
-    id: '23',
-    title: '搬家货运',
-    price: 280,
-    unit: '车',
-    image: `https://plus.unsplash.com/premium_photo-1679858780488-13faaa89d175${IMG_PARAM}`,
-    description: '小型搬家、同城货运，提供打包服务，明码标价无隐形消费。',
-    rating: 4.5,
-    sales: 180,
-    tags: ['准时达', '无隐形消费'],
-    features: ['电梯免费', '自带打包', 'GPS定位'],
-    merchantId: '2021006121623251'
-  },
-  {
-    id: '24',
-    title: '管道疏通',
-    price: 20,
-    unit: '次',
-    image: `https://plus.unsplash.com/premium_photo-1661662815924-97a8a767a262${IMG_PARAM}`,
-    description: '专业设备疏通马桶、地漏、洗菜盆、浴缸等各种管道堵塞。',
-    rating: 4.6,
-    sales: 210,
-    tags: ['快速上门', '不通不收费'],
-    features: ['专业设备', '清理现场', '保修7天'],
-    merchantId: '2021006121623251'
-  },
-  {
-    id: '25',
-    title: '保姆月嫂',
-    price: 6000,
-    unit: '月',
-    image: `https://plus.unsplash.com/premium_photo-1676143322259-7788cbf42540${IMG_PARAM}`,
-    description: '经验丰富的住家保姆、月嫂，提供育儿、养老、烹饪等全方位服务。',
-    rating: 4.9,
-    sales: 80,
-    tags: ['金牌月嫂', '持证上岗'],
-    features: ['背景调查', '健康体检', '保险保障'],
-    merchantId: '2021006121623251'
-  },
-  {
-    id: '26',
-    title: '上门维修',
-    price: 10,
-    unit: '次',
-    image: `https://plus.unsplash.com/premium_photo-1663013675008-bd5a7898ac4f${IMG_PARAM}`,
-    description: '专业维修家电、水电、家具等，快速上门，明码标价。',
-    rating: 4.7,
-    sales: 250,
-    tags: ['快速响应', '专业维修'],
-    features: ['免费上门', '配件保真', '保修30天'],
-    merchantId: '2021006121623251'
-  },
-  {
-    id: '28',
-    title: '宠物护理',
-    price: 100,
-    unit: '次',
-    image: `https://images.unsplash.com/photo-1583337130417-3346a1be7dee${IMG_PARAM}`,
-    description: '专业宠物洗澡、美容、寄养服务，关爱您的宠物。',
-    rating: 4.9,
-    sales: 190,
-    tags: ['爱心服务', '专业美容'],
-    features: ['进口洗护', '环境消毒', '实时监控'],
-    merchantId: '2021006121623251'
+    features: ['进口洗护', '环境消毒', '实时监控']
   }
+
 
 ];
 
