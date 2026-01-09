@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, MapPin, Clock, Calendar, ShieldCheck, Loader2, ScanLine } from 'lucide-react';
 import { getServiceById, simulateApiCall, getMerchantById, MERCHANTS } from '../services/mockData';
 import { createAlipayPayment, createAlipayWapPayment } from '../services/apiService';
@@ -129,15 +129,15 @@ const PaymentModal: React.FC<{
 export const Booking: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
   const { isAuthenticated } = useAuth();
   
   const [service, setService] = useState<ServiceItem | null>(null);
   const [showPayModal, setShowPayModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 从 location.state 获取商户ID，如果没有则使用默认商户
-  const merchantId = (location.state as { merchantId?: string })?.merchantId || Object.values(MERCHANTS)[0]?.id || null;
+  // 商户选择状态 - 默认选中第一个商户（必选）
+  const firstMerchantId = Object.values(MERCHANTS)[0]?.id || '';
+  const [selectedMerchantId, setSelectedMerchantId] = useState<string>(firstMerchantId);
 
   // 表单状态
   const [form, setForm] = useState<BookingFormState>({
@@ -190,7 +190,7 @@ export const Booking: React.FC = () => {
       return;
     }
     
-    if (!service || !merchantId) {
+    if (!service || !selectedMerchantId) {
       alert('服务信息不完整，请稍后重试');
       return;
     }
@@ -205,14 +205,14 @@ export const Booking: React.FC = () => {
       // 根据设备类型选择支付API
       const paymentApi = isMobileDevice() ? createAlipayWapPayment : createAlipayPayment;
       
-      // 调用后端API创建支付宝支付，使用传递过来的商户ID
-      const merchantName = getMerchantById(merchantId)?.name || '未知商家';
+      // 调用后端API创建支付宝支付，使用选中的商户ID
+      const merchantName = getMerchantById(selectedMerchantId)?.name || '未知商家';
       const result = await paymentApi({
         orderId,
         totalAmount,
         subject: `${service.title} - ${merchantName}`,
         body: `家政服务：${service.title} - ${form.quantity}${service.unit || '项'}`,
-        merchantId: merchantId,
+        merchantId: selectedMerchantId,
       });
       
       if (result.success && result.paymentUrl) {
@@ -275,9 +275,7 @@ export const Booking: React.FC = () => {
           <div className="flex-1 flex flex-col justify-between">
             <h3 className="font-bold text-gray-900">{service.title}</h3>
             <p className="text-xs text-gray-500 line-clamp-1">{service.description}</p>
-            {merchantId && (
-              <p className="text-xs text-gray-500 mt-1">提供商：{getMerchantById(merchantId)?.name || '未知商家'}</p>
-            )}
+            <p className="text-xs text-gray-500 mt-1">提供商：{getMerchantById(selectedMerchantId)?.name || '未知商家'}</p>
             <div className="flex justify-between items-center mt-2">
               <span className="text-teal-600 font-bold">¥{service.price}/{service.unit}</span>
               
@@ -310,6 +308,29 @@ export const Booking: React.FC = () => {
             </div>
             
             <div className="p-4 space-y-4">
+                <div className="space-y-1">
+                    <label className="text-xs text-gray-500 ml-1">服务提供商</label>
+                    <div className="relative">
+                        <select
+                            value={selectedMerchantId}
+                            onChange={(e) => setSelectedMerchantId(e.target.value)}
+                            className="w-full bg-white text-gray-900 border border-gray-200 rounded-lg p-3 pr-8 text-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer"
+                        >
+                            {Object.values(MERCHANTS).map((merchant) => (
+                                <option key={merchant.id} value={merchant.id}>
+                                    {merchant.name}
+                                </option>
+                            ))}
+                        </select>
+                        {/* 下拉箭头 */}
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
                 <div className="space-y-1">
                     <label className="text-xs text-gray-500 ml-1">联系人</label>
                     <input 

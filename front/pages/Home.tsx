@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SERVICES, getMerchantById, MERCHANTS } from '../services/mockData';
+import { SERVICES } from '../services/mockData';
 import { MapPin, Search, Star } from 'lucide-react';
 import { BottomNav } from '../components/BottomNav';
 
@@ -22,8 +22,6 @@ const GlobalStyles = () => (
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
-  // 状态管理
-  const [selectedMerchant, setSelectedMerchant] = React.useState<string>('全部');
   
   // 轮播图状态管理
   const [currentSlide, setCurrentSlide] = React.useState<number>(0);
@@ -53,27 +51,9 @@ export const Home: React.FC = () => {
     }
   ];
   
-  // 提供商列表 - 所有商户都有相同的服务产品
-  const merchants = ['全部', ...Object.values(MERCHANTS).map(m => m.name)];
-  
-  // 根据商户名称获取商户ID
-  const getMerchantIdByName = (name: string): string | null => {
-    if (name === '全部') return null;
-    const merchant = Object.values(MERCHANTS).find(m => m.name === name);
-    return merchant?.id || null;
-  };
-  
-  // 筛选服务 - 所有服务对所有商户都可见
-  const filteredServices = SERVICES;
-  
-  // 获取当前选中的商户ID
-  const selectedMerchantId = getMerchantIdByName(selectedMerchant);
-  
-  // 处理服务点击，传递选中的商户ID
+  // 处理服务点击
   const handleServiceClick = (serviceId: string) => {
-    navigate(`/service/${serviceId}`, {
-      state: { merchantId: selectedMerchantId }
-    });
+    navigate(`/service/${serviceId}`);
   };
   
   // 自动轮播效果
@@ -160,36 +140,12 @@ export const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* 热门推荐标题与筛选 */}
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold text-gray-800 text-lg">
-            热门推荐
-            {selectedMerchant !== '全部' && ` (${selectedMerchant})`}
-          </h3>
-          
-          {/* 服务提供商筛选下拉框 */}
-          <div className="relative">
-            <select
-              value={selectedMerchant}
-              onChange={(e) => setSelectedMerchant(e.target.value)}
-              className="appearance-none bg-white border border-gray-200 hover:border-teal-300 text-gray-700 text-sm font-medium py-2 px-4 pr-8 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors cursor-pointer"
-            >
-              {merchants.map((merchant, idx) => (
-                <option key={idx} value={merchant}>
-                  {merchant}
-                </option>
-              ))}
-            </select>
-            {/* 下拉箭头 */}
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
+        {/* 热门推荐标题 */}
+        <div className="mb-4">
+          <h3 className="font-bold text-gray-800 text-lg">热门推荐</h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredServices.map((service) => (
+          {SERVICES.map((service) => (
             <div 
               key={service.id} 
               onClick={() => handleServiceClick(service.id)}
@@ -203,9 +159,6 @@ export const Home: React.FC = () => {
               <div>
                 <h4 className="font-bold text-gray-900 text-base mb-1">{service.title}</h4>
                 <p className="text-xs text-gray-500 mb-2 line-clamp-2">{service.description}</p>
-                {selectedMerchant !== '全部' && (
-                  <p className="text-xs text-gray-500 mb-3">提供商：{selectedMerchant}</p>
-                )}
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2 text-xs text-gray-500">
                         <span className="flex items-center text-orange-400">
