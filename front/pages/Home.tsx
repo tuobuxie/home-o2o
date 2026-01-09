@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { SERVICES } from '../services/mockData';
 import { MapPin, Search, Star } from 'lucide-react';
 import { BottomNav } from '../components/BottomNav';
+import { ServiceItem } from '../types';
 
 // 添加全局样式，隐藏滚动条
 const GlobalStyles = () => (
@@ -20,11 +21,16 @@ const GlobalStyles = () => (
   </style>
 );
 
+type SortType = 'price-asc' | 'price-desc' | 'title-asc' | 'title-desc';
+
 export const Home: React.FC = () => {
   const navigate = useNavigate();
   
   // 轮播图状态管理
   const [currentSlide, setCurrentSlide] = React.useState<number>(0);
+  
+  // 排序状态，默认按金额升序
+  const [sortType, setSortType] = React.useState<SortType>('price-asc');
   
   // 轮播图数据
   const bannerSlides = [
@@ -55,6 +61,23 @@ export const Home: React.FC = () => {
   const handleServiceClick = (serviceId: string) => {
     navigate(`/service/${serviceId}`);
   };
+  
+  // 排序服务列表
+  const sortedServices = React.useMemo(() => {
+    const services = [...SERVICES];
+    switch (sortType) {
+      case 'price-asc':
+        return services.sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return services.sort((a, b) => b.price - a.price);
+      case 'title-asc':
+        return services.sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'));
+      case 'title-desc':
+        return services.sort((a, b) => b.title.localeCompare(a.title, 'zh-CN'));
+      default:
+        return services;
+    }
+  }, [sortType]);
   
   // 自动轮播效果
   React.useEffect(() => {
@@ -140,12 +163,26 @@ export const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* 热门推荐标题 */}
-        <div className="mb-4">
+        {/* 热门推荐标题和排序 */}
+        <div className="mb-4 flex items-center justify-between">
           <h3 className="font-bold text-gray-800 text-lg">热门推荐</h3>
+          <div className="flex items-center space-x-2">
+            <label htmlFor="sort-select" className="text-sm text-gray-600">排序：</label>
+            <select
+              id="sort-select"
+              value={sortType}
+              onChange={(e) => setSortType(e.target.value as SortType)}
+              className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+            >
+              <option value="price-asc">按金额升序</option>
+              <option value="price-desc">按金额降序</option>
+              <option value="title-asc">按标题升序</option>
+              <option value="title-desc">按标题降序</option>
+            </select>
+          </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {SERVICES.map((service) => (
+          {sortedServices.map((service) => (
             <div 
               key={service.id} 
               onClick={() => handleServiceClick(service.id)}
