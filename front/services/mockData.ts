@@ -17,6 +17,10 @@ export const MERCHANTS: Record<string, Merchant> = {
   '2021006123684857': {
     id: '2021006123684857',
     name: '蓝海'
+  },
+  '2021006128692141': {
+    id: '2021006128692141',
+    name: '磬珏'
   }
 };
 
